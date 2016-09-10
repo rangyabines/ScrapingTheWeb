@@ -1,0 +1,27 @@
+{
+  "name": "scrapingtheweb",
+  "version": "1.0.0",
+  "description": "all the news the fit to scrape",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rangyabines/ScrapingTheWeb.git"
+  },
+  "author": "rangy abines",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rangyabines/ScrapingTheWeb/issues"
+  },
+  "homepage": "https://github.com/rangyabines/ScrapingTheWeb#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.22.0",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.6.0",
+    "request": "^2.74.0"
+  }
+}
