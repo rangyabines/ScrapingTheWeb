@@ -4,17 +4,17 @@ var app = express();
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-// Notice: Our scraping tools are prepared, too
+
 var request = require('request');
 var cheerio = require('cheerio');
 
-// use morgan and bodyparser with our app
+// morgan and bodyparser
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-// make public a static dir
+// public a static dir
 app.use(express.static('public'));
 
 
@@ -33,48 +33,35 @@ db.once('open', function() {
 });
 
 
-// And we bring in our Note and Article models
 var Note = require('./models/Note.js');
 var Article = require('./models/Article.js');
 
 
 // Routes
-// ======
 
 // Simple index route
 app.get('/', function(req, res) {
   res.send(index.html);
 });
 
-// A GET request to scrape the echojs website.
 app.get('/scrape', function(req, res) {
-	// first, we grab the body of the html with request
   request('http://www.cultofmac.com/category/news/', function(error, response, html) {
-  	// then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
-    // now, we grab every h2 within an article tag, and do the following:
-    $('div .post').each(function(i, element) {
+    $('div.posts').each(function(i, element) {
 
     		// save an empty result object
 				var result = {};
 
-				// add the text and href of every link,
-				// and save them as properties of the result obj
 				result.title = $(this).children('a').text();
 				result.link = $(this).children('a').attr('href');
 
-				// using our Article model, create a new entry.
-				// Notice the (result):
-				// This effectively passes the result object to the entry (and the title and link)
 				var entry = new Article (result);
 
-				// now, save that entry to the db
+				// save that entry to the db
 				entry.save(function(err, doc) {
-					// log any errors
 				  if (err) {
 				    console.log(err);
 				  }
-				  // or log the doc
 				  else {
 				    console.log(doc);
 				  }
@@ -83,7 +70,7 @@ app.get('/scrape', function(req, res) {
 
     });
   });
-  // tell the browser that we finished scraping the text.
+
   res.send("Scrape Complete");
 });
 
@@ -137,9 +124,6 @@ app.post('/articles/:id', function(req, res){
 		}
 		// otherwise
 		else {
-			// using the Article id passed in the id parameter of our url,
-			// prepare a query that finds the matching Article in our db
-			// and update it to make it's lone note the one we just saved
 			Article.findOneAndUpdate({'_id': req.params.id}, {'note':doc._id})
 			// execute the above query
 			.exec(function(err, doc){
@@ -154,11 +138,6 @@ app.post('/articles/:id', function(req, res){
 		}
 	});
 });
-
-
-
-
-
 
 
 // listen on port 3000
