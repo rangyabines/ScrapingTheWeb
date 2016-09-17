@@ -19,8 +19,8 @@ app.use(express.static('public'));
 
 
 // Database configuration with mongoose
-mongoose.connect('mongodb://localhost/ScrapingTheWeb');
-// mongoose.connect('mongodb://heroku_8mx0d9w4:q67d78ps7v3u2gr1pja866nh7u@ds029496.mlab.com:29496/heroku_8mx0d9w4');
+// mongoose.connect('mongodb://localhost/ScrapingTheWeb');
+mongoose.connect('mongodb://heroku_8mx0d9w4:q67d78ps7v3u2gr1pja866nh7u@ds029496.mlab.com:29496/heroku_8mx0d9w4');
 var db = mongoose.connection;
 
 // show any mongoose errors
