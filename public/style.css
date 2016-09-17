@@ -63,6 +63,23 @@ body {
     height: 200px;
     font-size: 18px; }
 
+  h1{
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 92px;
+    padding: 30px;
+    margin-top: -5%;
+    text-align: center;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility; }
+
+  .insetshadow{
+    color: #1e88e5;
+    background-color: #2d2d2d;
+    letter-spacing: .1em;
+    text-shadow:
+      -1px -1px 1px #111,
+      2px 2px 1px #363636; }
+
     @import url(http://fonts.googleapis.com/css?family=Lato:300);
     *, *:before, *:after {
       box-sizing: border-box;
@@ -82,8 +99,8 @@ body {
       width: 650px;
       height: 567px;
       margin: 15% auto;
-      -webkit-animation: shake 7s infinite;
-              animation: shake 7s infinite;
+      -webkit-animation: shake 5s infinite;
+              animation: shake 5s infinite;
     }
 
     .hulk {
@@ -134,8 +151,8 @@ body {
       background-image: linear-gradient(to bottom, #ffffff, #ffffff 25%, #4b0a00 25%, #4b0a00 70%, #ffffff 75%, #ffffff 100%);
       border-top-left-radius: 0.5em;
       border-top-right-radius: 0.5em;
-      -webkit-animation: mouthOpen 7s infinite;
-              animation: mouthOpen 7s infinite;
+      -webkit-animation: mouthOpen 5s infinite;
+              animation: mouthOpen 5s infinite;
     }
     .hulk .mouth::before {
       content: "";
@@ -157,8 +174,8 @@ body {
       background: #b5b500;
       position: absolute;
       clip: rect(-1em, 11.2em, 12.55em, 7.625em);
-      -webkit-animation: hulkRightarm 7s infinite;
-              animation: hulkRightarm 7s infinite;
+      -webkit-animation: hulkRightarm 5s infinite;
+              animation: hulkRightarm 5s infinite;
     }
     .hulk .right-arm::after {
       content: "";
@@ -180,8 +197,8 @@ body {
       background: #949400;
       position: absolute;
       clip: rect(-0.188em, 6.1em, 13.875em, 2.3em);
-      -webkit-animation: hulkLeftarm 7s infinite;
-              animation: hulkLeftarm 7s infinite;
+      -webkit-animation: hulkLeftarm 5s infinite;
+              animation: hulkLeftarm 5s infinite;
     }
     .hulk .left-arm::after {
       content: "";
@@ -204,8 +221,8 @@ body {
       background: #949400;
       box-shadow: 11.1em 0 0 #b5b500;
       z-index: 10;
-      -webkit-animation: hulkHands 7s infinite;
-              animation: hulkHands 7s infinite;
+      -webkit-animation: hulkHands 5s infinite;
+              animation: hulkHands 5s infinite;
     }
     .hulk .body {
       width: 12.5em;
@@ -246,8 +263,8 @@ body {
       margin-top: 12.3em;
       background-image: -webkit-linear-gradient(top, #2e0e62, #2e0e62 50%, #575700 50%, #575700 100%);
       background-image: linear-gradient(to bottom, #2e0e62, #2e0e62 50%, #575700 50%, #575700 100%);
-      -webkit-animation: hulkPants2 7s infinite;
-              animation: hulkPants2 7s infinite;
+      -webkit-animation: hulkPants2 5s infinite;
+              animation: hulkPants2 5s infinite;
     }
     .hulk .right-leg::after {
       content: "";
@@ -274,8 +291,8 @@ body {
       margin-top: 12.3em;
       background-image: -webkit-linear-gradient(top, #581bbb, #581bbb 50%, #bdbd00 50%, #bdbd00 100%);
       background-image: linear-gradient(to bottom, #581bbb, #581bbb 50%, #bdbd00 50%, #bdbd00 100%);
-      -webkit-animation: hulkPants 7s infinite;
-              animation: hulkPants 7s infinite;
+      -webkit-animation: hulkPants 5s infinite;
+              animation: hulkPants 5s infinite;
     }
     .hulk .left-leg::after {
       content: "";

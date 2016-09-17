@@ -42,6 +42,23 @@ body{
   width:960px;
   margin: 0 auto;
   padding-top: 5%;
+  h1{
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 92px;
+    padding: 30px;
+    margin-top: -5%;
+    text-align: center;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+  }
+  &.insetshadow {
+    color: #1e88e5;
+    background-color: #2d2d2d;
+    letter-spacing: .1em;
+    text-shadow:
+      -1px -1px 1px #111,
+      2px 2px 1px #363636;
+  }
 }
 #articles{
   width:60%;
@@ -88,7 +105,7 @@ $thorshadow:#00272b;
 $thorskin:#ffcee7;
 $thorskinShadow:#ffc688;
 $hammer:#382727;
-$time:7s;
+$time:5s;
 
 
 @mixin keyframes($name) {
