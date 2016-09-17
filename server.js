@@ -19,8 +19,8 @@ app.use(express.static('public'));
 
 
 // Database configuration with mongoose
-// mongoose.connect('mongodb://localhost/ScrapingTheWeb');
-mongoose.connect('mongodb://heroku_8mx0d9w4:q67d78ps7v3u2gr1pja866nh7u@ds029496.mlab.com:29496/heroku_8mx0d9w4');
+mongoose.connect('mongodb://localhost/ScrapingTheWeb');
+// mongoose.connect('mongodb://heroku_8mx0d9w4:q67d78ps7v3u2gr1pja866nh7u@ds029496.mlab.com:29496/heroku_8mx0d9w4');
 var db = mongoose.connection;
 
 // show any mongoose errors
@@ -49,23 +49,25 @@ app.get('/scrape', function(req, res) {
   request('http://www.cultofmac.com/category/news/', function(error, response, html) {
     console.log(html);
     var $ = cheerio.load(html);
-    $('div.article-wrapper > article > header h2').each(function(i, element) {
-
+    $('div.article-wrapper > article > header > a').each(function(i, element) {
+      console.log($(this).text());
     		// save an empty result object
 				var result = {};
 
-				result.title = $(this).children('a').text();
-				result.link = $(this).children('a').attr('href');
-
+				result.title = $(this).text();
+          //console.log ($(this).children('a')[0]);
+				result.link = $(this).attr('href');
+         console.log(result);
 				var entry = new Article (result);
 
 				// save that entry to the db
 				entry.save(function(err, doc) {
 				  if (err) {
-				    console.log(err);
+				     console.log(err);
 				  }
 				  else {
-				    console.log(doc);
+
+				    console.log('SAVED', doc);
 				  }
 				});
 
