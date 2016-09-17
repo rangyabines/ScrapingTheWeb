@@ -1278,4 +1278,8 @@ body {
     }
     .footer--love a {
       color: #43abf0;
+      font-size: 5px;
+    }
+    .footer--love p{
+      font-size: 5px;
     }
