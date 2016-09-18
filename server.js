@@ -54,9 +54,11 @@ app.get('/scrape', function(req, res) {
     		// save an empty result object
 				var result = {};
 
-				result.title = $(this).text();
+				// result.title = $(this).text();
+        result.title = $(this).attr('title');
           //console.log ($(this).children('a')[0]);
 				result.link = $(this).attr('href');
+        result.showImage = $(this).children('img').attr('src');
          console.log(result);
 				var entry = new Article (result);
 
@@ -142,6 +144,32 @@ app.post('/articles/:id', function(req, res){
 		}
 	});
 });
+
+app.delete('/articles/:id', function(req, res){
+
+			console.log('in delete');
+			Article.findById(req.params.id)
+			// execute the above query
+			.exec(function(err, article){
+				console.log('err', err);
+				console.log('article', article);
+				// log any errors
+				if (err){
+					console.log(err);
+				} else {
+					console.log(article);
+					var noteId = article.note;
+					//article.note = null;
+					article.save(function(err) {
+						console.log('err', err);
+						Note.remove({_id: noteId}).exec(function(err) {
+							console.log('err');
+							res.send();
+						})
+					});
+				 }
+				})
+			});
 
 
 // listen on port 3000

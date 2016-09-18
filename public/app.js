@@ -3,7 +3,7 @@ $.getJSON('/articles', function(data) {
   // for each one
   for (var i = 0; i<data.length; i++){
     // display the apropos information on the page
-    $('#articles').append('<p data-id="' + data[i]._id + '">'+ data[i].title + '<br />'+ data[i].link + '</p>');
+    $('#articles').append('<p data-id="' + data[i]._id + '">'+ data[i].title + '</p>');
   }
 });
 
@@ -30,7 +30,8 @@ $(document).on('click', 'p', function(){
       // a textarea to add a new note body
       $('#notes').append('<textarea id="bodyinput" name="body"></textarea>');
       // a button to submit a new note, with the id of the article saved to it
-      $('#notes').append('<button data-id="' + data._id + '" id="savenote">Save Note</button>');
+      $('#notes').append('<button data-id="' + data._id + '" id="savenote" class="waves-effect waves-light btn">Save Note</button>');
+       $('#notes').append('<button data-id="' + data._id + '" id="deletenote" class="waves-effect waves-light btn">Delete Note</button>');
 
       // if there's a note in the article
       if(data.note){
@@ -60,6 +61,34 @@ $(document).on('click', '#savenote', function(){
     .done(function( data ) {
       // log the response
       console.log(data);
+      // empty the notes section
+      $('#notes').empty();
+    });
+
+  // Also, remove the values entered in the input and textarea for note entry
+  $('#titleinput').val("");
+  $('#bodyinput').val("");
+});
+
+// delet post
+
+$(document).on('click', '#deletenote', function(){
+  // grab the id associated with the article from the submit button
+  var thisId = $(this).attr('data-id');
+
+  // run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "DELETE",
+    url: "/articles/" + thisId,
+    data: {
+      title: $('#titleinput').val(), // value taken from title input
+      body: $('#bodyinput').val() // value taken from note textarea
+    }
+  })
+    // with that done
+    .done(function( data ) {
+      // log the response
+      console.log('deletd', data);
       // empty the notes section
       $('#notes').empty();
     });
