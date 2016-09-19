@@ -7,6 +7,18 @@ $.getJSON('/articles', function(data) {
   }
 });
 
+$('#scrapeBtn').on('click', function(){
+    $('#articles').empty();
+
+    $.ajax({
+      method: "GET",
+      url: "/scrape"
+    }).done(function() {
+      console.log("Scraping is great!")
+      location.reload();
+    })
+});
+
 
 // whenever someone clicks a p tag
 $(document).on('click', 'p', function(){
